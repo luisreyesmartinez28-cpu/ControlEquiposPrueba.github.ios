@@ -66,6 +66,38 @@ function inicializarUsuarios() {
         });
     }
 
+   const existeusuario1 = usuarios.some(
+        usuario => usuario.usuario === "walayo"
+    );
+
+    if (!existeusuario1) {
+        usuarios.push({
+            id: generarId(),
+            nombre: "Walter Alayo",
+            usuario: "walayo",
+            password: "walter123&",
+            rol: "ALMACENERO",
+            activo: true,
+            fechaRegistro: obtenerFechaActual()
+        });
+    }
+
+    const existeusuario2 = usuarios.some(
+        usuario => usuario.usuario === "klorona"
+    );
+
+    if (!existeusuario2) {
+        usuarios.push({
+            id: generarId(),
+            nombre: "Kedin Loroña",
+            usuario: "klorona",
+            password: "kedin123&",
+            rol: "ALMACENERO",
+            activo: true,
+            fechaRegistro: obtenerFechaActual()
+        });
+    }
+
     guardarUsuarios(usuarios);
 }
 
