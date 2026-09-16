@@ -1,0 +1,131 @@
+.btn-qr,
+.btn-qr-masivo,
+.btn-descargar-qr {
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: white;
+
+    border: none;
+
+    border-radius: 7px;
+
+    padding: 8px 14px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: 0.2s;
+}
+
+
+.btn-qr:hover,
+.btn-qr-masivo:hover,
+.btn-descargar-qr:hover {
+
+    transform:
+        translateY(-1px);
+
+    opacity: 0.9;
+
+}
+
+
+.modal-qr {
+
+    position: fixed;
+
+    inset: 0;
+
+    background:
+        rgba(
+            0,
+            0,
+            0,
+            0.65
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 99999;
+
+}
+
+
+.modal-qr-contenido {
+
+    position: relative;
+
+    width: 340px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 14px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 60px
+        rgba(
+            0,
+            0,
+            0,
+            0.3
+        );
+
+}
+
+
+#qrIndividual {
+
+    display: flex;
+
+    justify-content: center;
+
+    margin: 20px 0;
+
+}
+
+
+#textoSerieQR {
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    margin-bottom: 20px;
+
+}
+
+
+.cerrar-qr {
+
+    position: absolute;
+
+    right: 12px;
+
+    top: 8px;
+
+    background: none;
+
+    border: none;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+}

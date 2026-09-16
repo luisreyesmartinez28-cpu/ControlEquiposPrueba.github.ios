@@ -1,0 +1,235 @@
+/* ==========================================
+   DNI + SCANNER
+========================================== */
+
+.dni-scan-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 46px;
+    gap: 8px;
+}
+
+
+.dni-input-box {
+    width: 100%;
+}
+
+
+.btn-scan-dni {
+    width: 46px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1683ff,
+            #0c68c8
+        );
+
+    border: none;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+
+.btn-scan-dni:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #2a91ff,
+            #0a76dd
+        );
+}
+
+
+/* MODAL */
+
+.scanner-modal {
+    width: calc(100% - 30px);
+    max-width: 500px;
+
+    background: #0b1728;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,0.65);
+}
+
+
+.scanner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 15px;
+
+    padding: 18px 20px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+
+.scanner-header span {
+    display: block;
+
+    color: var(--primary);
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+
+.scanner-header h2 {
+    margin: 3px 0 0;
+
+    color: white;
+
+    font-size: 18px;
+}
+
+
+.scanner-header p {
+    margin: 5px 0 0;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+}
+
+
+.scanner-body {
+    padding: 18px;
+}
+
+
+.scanner-reader {
+    width: 100%;
+
+    min-height: 280px;
+
+    overflow: hidden;
+
+    background: #000;
+
+    border-radius: 12px;
+
+    border:
+        1px solid
+        rgba(22,131,255,0.20);
+}
+
+
+.scanner-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 12px;
+
+    color: var(--text-secondary);
+
+    font-size: 9px;
+}
+
+
+.scanner-message i {
+    color: var(--primary);
+}
+
+/* ==========================================
+   SCANNER SERIE ENTREGA
+========================================== */
+
+.serie-scan-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        46px
+        auto;
+
+    gap: 8px;
+}
+
+
+.btn-scan-serie {
+    width: 46px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1683ff,
+            #0c68c8
+        );
+
+    border: none;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+
+.btn-scan-serie:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #2992ff,
+            #0871da
+        );
+
+    transform: translateY(-1px);
+}
+
+
+@media (max-width: 600px) {
+
+    .serie-scan-row {
+        grid-template-columns:
+            minmax(0, 1fr)
+            46px;
+    }
+
+
+    .serie-scan-row
+    .btn-add-delivery-equipment {
+        grid-column: 1 / -1;
+
+        width: 100%;
+    }
+
+}

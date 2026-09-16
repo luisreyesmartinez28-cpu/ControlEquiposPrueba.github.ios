@@ -1,0 +1,5248 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color"
+          content="#07111f">
+
+    <title>Control de Equipos</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="Rc.css">
+
+    <link rel="stylesheet" href="vale.css">
+
+    <link rel="stylesheet" href="notificacion.css">
+
+    <link rel="stylesheet" href="avatar.css">
+
+    <link rel="stylesheet" href="perfil.css">
+
+    <link rel="stylesheet" href="scan.css">
+
+    <link rel="stylesheet" href="qr.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<div id="loginScreen" class="auth-screen">
+
+    <div class="login-background"></div>
+
+    <div class="login-container">
+
+        <div class="login-logo">
+
+            <div class="login-logo-icon">
+                <i class="fa-solid fa-microchip"></i>
+            </div>
+
+            <div>
+                <h1>CONTROL</h1>
+                <span>EQUIPOS</span>
+            </div>
+
+        </div>
+
+
+        <div class="login-card">
+
+            <div class="login-header">
+
+                <span class="panel-label">
+                    ACCESO AL SISTEMA
+                </span>
+
+                <h2>Iniciar sesión</h2>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Usuario
+                    </label>
+
+                    <div class="input-container">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="loginUsername"
+                            placeholder="Ingresa tu usuario"
+                            autocomplete="username"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Contraseña
+                    </label>
+
+                    <div class="input-container">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="loginPassword"
+                            placeholder="Ingresa tu contraseña"
+                            autocomplete="current-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="mostrarPassword()">
+
+                            <i
+                                id="passwordIcon"
+                                class="fa-solid fa-eye">
+                            </i>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div
+                    id="loginError"
+                    class="form-error">
+                </div>
+            
+            <div class="forgot-password">
+
+                <button
+                    type="button"
+                    onclick="mostrarRecuperacion()">
+
+                    ¿Olvidaste tu contraseña?
+
+                </button>
+
+            </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button">
+
+                    <span>Ingresar al sistema</span>
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+
+
+        </div>
+
+
+        <div class="login-footer">
+
+            <span>
+                <i class="fa-solid fa-shield-halved"></i>
+                Sistema protegido
+            </span>
+
+            <span>
+                CONTROL DE EQUIPOS
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     REGISTRO
+===================================================== -->
+
+<div id="registerScreen"
+     class="auth-screen hidden">
+
+    <div class="login-background"></div>
+
+    <div class="login-container">
+
+        <div class="login-logo">
+
+            <div class="login-logo-icon">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+            <div>
+                <h1>CONTROL</h1>
+                <span>EQUIPOS</span>
+            </div>
+
+        </div>
+
+
+        <div class="login-card">
+
+            <div class="login-header">
+
+                <span class="panel-label">
+                    NUEVA CUENTA
+                </span>
+
+                <h2>Registrar usuario</h2>
+
+                <p>
+                    Crea una nueva cuenta para acceder al sistema.
+                </p>
+
+            </div>
+
+
+            <form id="registerForm">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Nombre completo
+                    </label>
+
+                    <div class="input-container">
+
+                        <i class="fa-solid fa-id-card"></i>
+
+                        <input
+                            type="text"
+                            id="registerName"
+                            placeholder="Ej. Juan Pérez"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Usuario
+                    </label>
+
+                    <div class="input-container">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="registerUsername"
+                            placeholder="Crea tu usuario"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Contraseña
+                    </label>
+
+                    <div class="input-container">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="registerPassword"
+                            placeholder="Mínimo 6 caracteres"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Confirmar contraseña
+                    </label>
+
+                    <div class="input-container">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        <input
+                            type="password"
+                            id="registerPasswordConfirm"
+                            placeholder="Repite tu contraseña"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="registerError"
+                    class="form-error">
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-button">
+
+                    <span>Crear cuenta</span>
+
+                    <i class="fa-solid fa-user-plus"></i>
+
+                </button>
+
+            </form>
+
+
+            <div class="login-register">
+
+                <span>
+                    Administración de usuarios
+                </span>
+
+                <button onclick="volverDesdeRegistro()">
+                    Volver a Usuarios
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     RECUPERACIÓN DE CONTRASEÑA
+===================================================== -->
+
+<!-- RECUPERACIÓN DE CONTRASEÑA -->
+<section id="recoveryScreen" class="auth-screen hidden">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+            <i class="fa-solid fa-key"></i>
+        </div>
+
+        <h1>Recuperar contraseña</h1>
+        <p class="login-subtitle">
+            Restablece el acceso a tu cuenta
+        </p>
+
+        <!-- PASO 1 -->
+        <div id="recoveryStep1">
+
+            <div class="input-group">
+                <label>Usuario</label>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input
+                        type="text"
+                        id="recoveryUsername"
+                        placeholder="Ingresa tu usuario"
+                        autocomplete="username"
+                    >
+                </div>
+            </div>
+
+            <div id="recoveryError1" class="form-error"></div>
+
+            <button
+                type="button"
+                class="btn-primary"
+                onclick="buscarUsuarioRecuperacion()"
+            >
+                <i class="fa-solid fa-arrow-right"></i>
+                Continuar
+            </button>
+
+        </div>
+
+
+        <!-- PASO 2 -->
+        <div id="recoveryStep2" class="hidden">
+
+            <div class="input-group">
+                <label>Nueva contraseña</label>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="newPassword"
+                        placeholder="Nueva contraseña"
+                        autocomplete="new-password"
+                    >
+                </div>
+            </div>
+
+
+            <div class="input-group">
+                <label>Confirmar contraseña</label>
+
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+
+                    <input
+                        type="password"
+                        id="newPasswordConfirm"
+                        placeholder="Repite la contraseña"
+                        autocomplete="new-password"
+                    >
+                </div>
+            </div>
+
+            <div id="recoveryError2" class="form-error"></div>
+
+            <button
+                type="button"
+                class="btn-primary"
+                onclick="cambiarPassword()"
+            >
+                <i class="fa-solid fa-check"></i>
+                Cambiar contraseña
+            </button>
+
+        </div>
+
+
+        <div class="auth-footer">
+
+            <button
+                type="button"
+                class="text-button"
+                onclick="mostrarLogin()"
+            >
+                <i class="fa-solid fa-arrow-left"></i>
+                Volver al inicio de sesión
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     APLICACIÓN
+===================================================== -->
+
+<div
+    id="appScreen"
+    class="app-container hidden">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside
+        class="sidebar"
+        id="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-icon brand-logo">
+                <img
+                    src="tecsys.png"
+                    alt="Logo"
+                    class="sidebar-logo-img"
+                >
+            </div>
+
+            <div class="brand-text">
+
+                <h2>EMPRESA</h2>
+
+                <span>Tecsys</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-line"></div>
+
+
+        <nav class="menu">
+
+
+            <p class="menu-title">
+                PRINCIPAL
+            </p>
+
+
+            <button
+                class="menu-item active"
+                onclick="mostrarModulo('dashboard', this)">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <span>Dashboard</span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="mostrarModulo('equipos', this)">
+
+                <i class="fa-solid fa-laptop"></i>
+
+                <span>Equipos</span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="mostrarModulo('entregas', this)">
+
+                <i class="fa-solid fa-hand-holding-hand"></i>
+
+                <span>Entregas</span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="mostrarModulo('devoluciones', this)">
+
+                <i class="fa-solid fa-rotate-left"></i>
+
+                <span>Devoluciones</span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="mostrarModulo('inventario', this)">
+
+                <i class="fa-solid fa-boxes-stacked"></i>
+
+                <span>Inventario</span>
+
+            </button>
+
+
+            <p class="menu-title">
+                GESTIÓN
+            </p>
+
+
+            <button
+                class="menu-item"
+                onclick="mostrarModulo('reportes', this)">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <span>Reportes</span>
+
+            </button>
+
+
+            <!-- SOLO ADMIN -->
+
+            <button
+                id="usuariosMenu"
+                class="menu-item admin-only"
+                onclick="mostrarModulo('usuarios', this)">
+
+                <i class="fa-solid fa-users"></i>
+
+                <span>Usuarios</span>
+
+            </button>
+
+
+            <button
+                class="menu-item"
+                onclick="mostrarModulo('configuracion', this)">
+
+                <i class="fa-solid fa-gear"></i>
+
+                <span>Configuración</span>
+
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-footer">
+
+
+            <div class="connection-status">
+
+                <span class="status-dot"></span>
+
+                <span>Sistema operativo</span>
+
+            </div>
+
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+
+            <button
+                class="mobile-menu"
+                onclick="toggleSidebar()">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+
+            <div class="page-info">
+
+                <span class="breadcrumb">
+
+                    SISTEMA /
+
+                    <strong id="breadcrumbText">
+                        DASHBOARD
+                    </strong>
+
+                </span>
+
+            </div>
+
+
+            <div class="topbar-actions">
+
+
+                <div class="notifications-wrapper">
+
+                    <button
+                        type="button"
+                        id="notificationButton"
+                        class="notification-btn"
+                        onclick="toggleNotificaciones(event)"
+                        title="Notificaciones"
+                    >
+                        <i class="fa-solid fa-bell"></i>
+
+                        <span
+                            id="notificationBadge"
+                            class="notification-badge hidden"
+                        >
+                            0
+                        </span>
+                    </button>
+
+
+                    <div
+                        id="notificationsPanel"
+                        class="notifications-panel hidden"
+                    >
+
+                        <div class="notifications-header">
+
+                            <div>
+                                <span>CENTRO DE ALERTAS</span>
+                                <h3>Notificaciones</h3>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="notifications-read-all"
+                                onclick="marcarTodasNotificacionesLeidas(event)"
+                            >
+                                Marcar leídas
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="notificationsList"
+                            class="notifications-list"
+                        >
+                        </div>
+
+
+                        <div class="notifications-footer">
+
+                            <span id="notificationsFooterText">
+                                Sin notificaciones pendientes
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="user-profile-wrapper">
+
+    <div
+        class="user-profile"
+        onclick="toggleUserProfileMenu(event)"
+    >
+
+        <div
+            class="user-avatar"
+            id="userAvatar"
+        >
+            US
+        </div>
+
+
+        <div class="user-data">
+
+            <strong
+                id="currentUserName"
+            >
+                Usuario
+            </strong>
+
+            <span
+                id="currentUserRole"
+            >
+                Usuario
+            </span>
+
+        </div>
+
+
+        <i
+            id="profileArrow"
+            class="fa-solid fa-chevron-down profile-arrow"
+        ></i>
+
+    </div>
+
+
+    <!-- MENU DESPLEGABLE -->
+
+    <div
+        id="userProfileMenu"
+        class="user-profile-menu hidden"
+    >
+
+        <div class="profile-menu-header">
+
+            <div
+                class="profile-menu-avatar"
+                id="profileMenuAvatar"
+            >
+                US
+            </div>
+
+            <div>
+
+                <strong
+                    id="profileMenuName"
+                >
+                    Usuario
+                </strong>
+
+                <span
+                    id="profileMenuRole"
+                >
+                    Usuario
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-menu-divider"></div>
+
+
+        <button
+            type="button"
+            onclick="abrirMiPerfil()"
+        >
+
+            <i class="fa-solid fa-user"></i>
+
+            Mi perfil
+
+        </button>
+
+
+        <button
+            type="button"
+            onclick="abrirConfiguracionDesdePerfil()"
+        >
+
+            <i class="fa-solid fa-gear"></i>
+
+            Configuración
+
+        </button>
+
+
+        <div class="profile-menu-divider"></div>
+
+
+        <button
+            type="button"
+            class="profile-menu-logout"
+            onclick="cerrarSesionDesdePerfil()"
+        >
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Cerrar sesión
+
+        </button>
+
+    </div>
+
+</div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================== -->
+
+        <section
+            id="dashboard"
+            class="module active-module">
+
+            <!-- =====================================
+                CABECERA
+            ====================================== -->
+
+            <div class="welcome-panel">
+
+                <div>
+
+                    <span class="panel-label">
+                        SISTEMA DE GESTIÓN
+                    </span>
+
+                    <h2>
+                        Bienvenido,
+                        <span id="welcomeUser">
+                            Usuario
+                        </span>
+                    </h2>
+
+                    <p>
+                        Resumen administrativo de equipos, entregas,
+                        devoluciones e inventario desde
+                        una sola plataforma.
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-date">
+
+            <i class="fa-solid fa-calendar-days"></i>
+
+            <div>
+
+                <span>Fecha actual</span>
+
+                <strong id="dashboardFecha">
+                    --/--/----
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         KPIS PRINCIPALES
+    ====================================== -->
+
+    <div class="dashboard-kpis">
+
+        <div class="dashboard-kpi-card">
+
+            <div class="dashboard-kpi-icon blue">
+
+                <i class="fa-solid fa-laptop"></i>
+
+            </div>
+
+            <div class="dashboard-kpi-content">
+
+                <span>Total equipos</span>
+
+                <strong id="dashboardTotalEquipos">
+                    0
+                </strong>
+
+                <small>
+                    Equipos registrados
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-kpi-card">
+
+            <div class="dashboard-kpi-icon green">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            </div>
+
+            <div class="dashboard-kpi-content">
+
+                <span>Disponibles</span>
+
+                <strong id="dashboardDisponibles">
+                    0
+                </strong>
+
+                <small>
+                    Listos para entregar
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-kpi-card">
+
+            <div class="dashboard-kpi-icon orange">
+
+                <i class="fa-solid fa-user-check"></i>
+
+            </div>
+
+            <div class="dashboard-kpi-content">
+
+                <span>Entregados</span>
+
+                <strong id="dashboardEntregados">
+                    0
+                </strong>
+
+                <small>
+                    Actualmente asignados
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-kpi-card">
+
+            <div class="dashboard-kpi-icon purple">
+
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+
+            </div>
+
+            <div class="dashboard-kpi-content">
+
+                <span>Mantenimiento</span>
+
+                <strong id="dashboardMantenimiento">
+                    0
+                </strong>
+
+                <small>
+                    Equipos no disponibles
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         SEGUNDA FILA KPIS
+    ====================================== -->
+
+    <div class="dashboard-secondary-kpis">
+
+        <div class="dashboard-secondary-card">
+
+            <div>
+
+                <span>
+                    Pendientes de firma
+                </span>
+
+                <strong id="dashboardPendientesFirma">
+                    0
+                </strong>
+
+            </div>
+
+            <i class="fa-solid fa-signature"></i>
+
+        </div>
+
+
+        <div class="dashboard-secondary-card">
+
+            <div>
+
+                <span>
+                    Total entregas
+                </span>
+
+                <strong id="dashboardTotalEntregas">
+                    0
+                </strong>
+
+            </div>
+
+            <i class="fa-solid fa-hand-holding"></i>
+
+        </div>
+
+
+        <div class="dashboard-secondary-card">
+
+            <div>
+
+                <span>
+                    Total devoluciones
+                </span>
+
+                <strong id="dashboardTotalDevoluciones">
+                    0
+                </strong>
+
+            </div>
+
+            <i class="fa-solid fa-rotate-left"></i>
+
+        </div>
+
+
+        <div class="dashboard-secondary-card">
+
+            <div>
+
+                <span>
+                    Equipos de baja
+                </span>
+
+                <strong id="dashboardBaja">
+                    0
+                </strong>
+
+            </div>
+
+            <i class="fa-solid fa-circle-xmark"></i>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         RESUMEN VISUAL
+    ====================================== -->
+
+    <div class="dashboard-main-grid">
+
+
+        <!-- DISTRIBUCION -->
+
+        <div class="dashboard-panel">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+
+                    <span class="dashboard-panel-label">
+                        INVENTARIO
+                    </span>
+
+                    <h3>
+                        Estado de los equipos
+                    </h3>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="dashboard-link-button"
+                    onclick="mostrarModulo('inventario')"
+                >
+                    Ver inventario
+                </button>
+
+            </div>
+
+
+            <div class="equipment-distribution">
+
+
+                <div class="distribution-circle">
+
+                    <div class="distribution-circle-inner">
+
+                        <strong id="dashboardPorcentajeAsignado">
+                            0%
+                        </strong>
+
+                        <span>
+                            Asignados
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="distribution-list">
+
+                    <div class="distribution-item">
+
+                        <div>
+
+                            <span class="distribution-dot available"></span>
+
+                            Disponibles
+
+                        </div>
+
+                        <strong id="dashboardResumenDisponible">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="distribution-item">
+
+                        <div>
+
+                            <span class="distribution-dot delivered"></span>
+
+                            Entregados
+
+                        </div>
+
+                        <strong id="dashboardResumenEntregado">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="distribution-item">
+
+                        <div>
+
+                            <span class="distribution-dot maintenance"></span>
+
+                            Mantenimiento
+
+                        </div>
+
+                        <strong id="dashboardResumenMantenimiento">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="distribution-item">
+
+                        <div>
+
+                            <span class="distribution-dot down"></span>
+
+                            Baja
+
+                        </div>
+
+                        <strong id="dashboardResumenBaja">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIVIDAD -->
+
+        <div class="dashboard-panel">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+
+                    <span class="dashboard-panel-label">
+                        ACTIVIDAD
+                    </span>
+
+                    <h3>
+                        Actividad reciente
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="dashboardActividad"
+                class="dashboard-activity"
+            >
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         ULTIMOS MOVIMIENTOS
+    ====================================== -->
+
+    <div class="dashboard-lists-grid">
+
+
+        <!-- ULTIMAS ENTREGAS -->
+
+        <div class="dashboard-panel">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+
+                    <span class="dashboard-panel-label">
+                        ENTREGAS
+                    </span>
+
+                    <h3>
+                        Últimas entregas
+                    </h3>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="dashboard-link-button"
+                    onclick="mostrarModulo('entregas')"
+                >
+                    Ver todas
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="dashboard-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>N°</th>
+                            <th>Trabajador</th>
+                            <th>Estado</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="dashboardUltimasEntregas">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ULTIMAS DEVOLUCIONES -->
+
+        <div class="dashboard-panel">
+
+            <div class="dashboard-panel-header">
+
+                <div>
+
+                    <span class="dashboard-panel-label">
+                        DEVOLUCIONES
+                    </span>
+
+                    <h3>
+                        Últimas devoluciones
+                    </h3>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="dashboard-link-button"
+                    onclick="mostrarModulo('devoluciones')"
+                >
+                    Ver todas
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="dashboard-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>N°</th>
+                            <th>Trabajador</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="dashboardUltimasDevoluciones">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+        <!-- =================================================
+             EQUIPOS
+        ================================================== -->
+
+        <section
+            id="equipos"
+            class="module">
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        GESTIÓN
+                    </span>
+
+                    <h2>
+                        Equipos
+                    </h2>
+
+                    <p>
+                        Registro y administración de equipos.
+                    </p>
+
+                </div>
+
+                <button class="btn-primary-header" onclick="abrirFormularioEquipo()">
+                    <i class="fa-solid fa-plus"></i>
+                    Registrar equipo
+                </button>
+
+            </div>
+
+
+            <!-- CONTADORES -->
+    <div class="equipment-stats">
+
+        <div class="equipment-stat-card">
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-laptop"></i>
+            </div>
+
+            <div>
+                <span>Total equipos</span>
+                <strong id="totalEquipos">0</strong>
+            </div>
+        </div>
+
+
+        <div class="equipment-stat-card">
+            <div class="stat-icon green">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <span>Disponibles</span>
+                <strong id="equiposDisponibles">0</strong>
+            </div>
+        </div>
+
+
+        <div class="equipment-stat-card">
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+
+            <div>
+                <span>Entregados</span>
+                <strong id="equiposEntregados">0</strong>
+            </div>
+        </div>
+
+
+        <div class="equipment-stat-card">
+            <div class="stat-icon red">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+
+            <div>
+                <span>Mantenimiento</span>
+                <strong id="equiposMantenimiento">0</strong>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- BUSCADOR -->
+    <div class="equipment-toolbar">
+
+        <div class="equipment-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="buscarEquipoInput"
+                placeholder="Buscar por código, equipo, marca, modelo o serie..."
+                oninput="filtrarEquipos()"
+            >
+
+        </div>
+
+        <select id="filtroEstadoEquipo" onchange="filtrarEquipos()">
+
+            <option value="">Todos los estados</option>
+            <option value="Disponible">Disponible</option>
+            <option value="Entregado">Entregado</option>
+            <option value="Mantenimiento">Mantenimiento</option>
+            <option value="Baja">Baja</option>
+
+        </select>
+
+    </div>
+
+
+    <!-- TABLA -->
+    <div class="table-container">
+
+        <table class="equipment-table">
+
+            <thead>
+
+                <tr>
+                    <th>Código</th>
+                    <th>Equipo</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>N° Serie</th>
+                    <th>Ubicación</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                    <th>QR</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="equiposTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+
+        <!-- =================================================
+             ENTREGAS
+        ================================================== -->
+
+        <section
+            id="entregas"
+            class="module">
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        OPERACIONES
+                    </span>
+
+                    <h2>
+                        Entrega de equipos
+                    </h2>
+
+                    <p>
+                        Registra la asignación de equipos
+                        a trabajadores.
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn-primary-header"
+                    onclick="abrirFormularioEntrega()"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Nueva entrega
+                </button>
+
+
+            </div>
+
+
+            <!-- CONTADORES -->
+
+    <div class="delivery-stats">
+
+        <div class="delivery-stat-card">
+
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </div>
+
+            <div>
+                <span>Total entregas</span>
+                <strong id="totalEntregas">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="delivery-stat-card">
+
+            <div class="stat-icon green">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <span>Entregas activas</span>
+                <strong id="entregasActivas">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="delivery-stat-card">
+
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-laptop"></i>
+            </div>
+
+            <div>
+                <span>Equipos entregados</span>
+                <strong id="totalEquiposEntregados">0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUSCADOR -->
+
+    <div class="equipment-toolbar">
+
+        <div class="equipment-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="buscarEntregaInput"
+                placeholder="Buscar por N° entrega, DNI, trabajador, equipo o serie..."
+                oninput="filtrarEntregas()"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- TABLA -->
+
+    <div class="table-container">
+
+        <table class="equipment-table">
+
+            <thead>
+
+                <tr>
+                    <th>N° Entrega</th>
+                    <th>Fecha</th>
+                    <th>DNI</th>
+                    <th>Trabajador</th>
+                    <th>Atendido por</th>
+                    <th>Firma</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="entregasTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+        <!-- =================================================
+             DEVOLUCIONES
+        ================================================== -->
+
+        <section
+            id="devoluciones"
+            class="module">
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        OPERACIONES
+                    </span>
+
+                    <h2>
+                        Devolucion de equipos
+                    </h2>
+
+                    <p> 
+                        Registra la devolución de equipos asignados al personal.
+                    </p>
+
+                </div>
+
+                <button
+                    class="btn-primary-header"
+                    onclick="abrirFormularioDevolucion()"
+                >
+                    <i class="fa-solid fa-plus"></i>
+                    Nueva devolución
+                </button>
+
+            </div>
+
+            <!-- CONTADORES -->
+
+    <div class="return-stats">
+
+        <div class="return-stat-card">
+
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-rotate-left"></i>
+            </div>
+
+            <div>
+                <span>Total devoluciones</span>
+                <strong id="totalDevoluciones">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="return-stat-card">
+
+            <div class="stat-icon green">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <span>Equipos disponibles</span>
+                <strong id="equiposDisponiblesDevolucion">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="return-stat-card">
+
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-laptop"></i>
+            </div>
+
+            <div>
+                <span>Equipos por devolver</span>
+                <strong id="equiposPendientesDevolucion">0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BUSCADOR -->
+
+    <div class="equipment-toolbar">
+
+        <div class="equipment-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="buscarDevolucionInput"
+                placeholder="Buscar por N° devolución, DNI, trabajador, equipo o serie..."
+                oninput="filtrarDevoluciones()"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- TABLA -->
+
+    <div class="table-container">
+
+        <table class="equipment-table">
+
+            <thead>
+
+                <tr>
+                    <th>N° Devolución</th>
+                    <th>Fecha</th>
+                    <th>N° Entrega</th>
+                    <th>DNI</th>
+                    <th>Trabajador</th>
+                    <th>Estado recibido</th>
+                    <th>Recibido por</th>
+                    <th>Acciones</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="devolucionesTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+        <!-- =================================================
+             INVENTARIO
+        ================================================== -->
+
+        <section
+            id="inventario"
+            class="module">
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        CONTROL
+                    </span>
+
+                    <h2>
+                        Inventario
+                    </h2>
+
+                    <p>
+                        Consulta el estado, asignacion y trazabilidad de todos los equipos.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- KPIS -->
+
+    <div class="inventory-stats">
+
+        <div class="inventory-stat-card">
+
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-laptop"></i>
+            </div>
+
+            <div>
+                <span>Total equipos</span>
+                <strong id="inventarioTotal">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="inventory-stat-card">
+
+            <div class="stat-icon green">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+
+            <div>
+                <span>Disponibles</span>
+                <strong id="inventarioDisponibles">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="inventory-stat-card">
+
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+
+            <div>
+                <span>Entregados</span>
+                <strong id="inventarioEntregados">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="inventory-stat-card">
+
+            <div class="stat-icon purple">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+
+            <div>
+                <span>Mantenimiento</span>
+                <strong id="inventarioMantenimiento">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="inventory-stat-card">
+
+            <div class="stat-icon red">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </div>
+
+            <div>
+                <span>Baja</span>
+                <strong id="inventarioBaja">0</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FILTROS -->
+
+    <div class="inventory-toolbar">
+
+        <div class="equipment-search inventory-search">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="buscarInventarioInput"
+                placeholder="Buscar por código, equipo, marca, modelo, serie o responsable..."
+                oninput="filtrarInventario()"
+            >
+
+        </div>
+
+
+        <select
+            id="filtroInventarioEstado"
+            onchange="filtrarInventario()"
+        >
+
+            <option value="">
+                Todos los estados
+            </option>
+
+            <option value="Disponible">
+                Disponible
+            </option>
+
+            <option value="Entregado">
+                Entregado
+            </option>
+
+            <option value="Mantenimiento">
+                Mantenimiento
+            </option>
+
+            <option value="Baja">
+                Baja
+            </option>
+
+        </select>
+
+
+        <select
+            id="filtroInventarioTipo"
+            onchange="filtrarInventario()"
+        >
+
+            <option value="">
+                Todos los equipos
+            </option>
+
+        </select>
+
+
+        <button
+            type="button"
+            class="btn-clear-filter"
+            onclick="limpiarFiltrosInventario()"
+        >
+            <i class="fa-solid fa-filter-circle-xmark"></i>
+            Limpiar
+        </button>
+
+    </div>
+
+
+    <!-- TABLA -->
+
+    <div class="table-container">
+
+        <table class="equipment-table inventory-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>Código</th>
+
+                    <th>Equipo</th>
+
+                    <th>Marca</th>
+
+                    <th>Modelo</th>
+
+                    <th>N° Serie</th>
+
+                    <th>Estado</th>
+
+                    <th>Responsable actual</th>
+
+                    <th>Última entrega</th>
+
+                    <th>Última devolución</th>
+
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="inventarioTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+        <!-- =================================================
+             REPORTES
+        ================================================== -->
+
+        <section
+            id="reportes"
+            class="module">
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        INFORMACIÓN
+                    </span>
+
+                    <h2>
+                        Reportes
+                    </h2>
+
+                    <p>
+                        Consulta, filtra y exporta la informacion del sistema.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+         TIPO DE REPORTE
+    ========================== -->
+
+    <div class="report-types">
+
+        <button
+            type="button"
+            class="report-type-card active"
+            id="btnReporteEquipos"
+            onclick="cambiarTipoReporte('equipos')"
+        >
+
+            <div class="report-type-icon blue">
+                <i class="fa-solid fa-laptop"></i>
+            </div>
+
+            <div>
+                <span>Reporte</span>
+                <strong>Equipos</strong>
+            </div>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="report-type-card"
+            id="btnReporteEntregas"
+            onclick="cambiarTipoReporte('entregas')"
+        >
+
+            <div class="report-type-icon orange">
+                <i class="fa-solid fa-hand-holding"></i>
+            </div>
+
+            <div>
+                <span>Reporte</span>
+                <strong>Entregas</strong>
+            </div>
+
+        </button>
+
+
+        <button
+            type="button"
+            class="report-type-card"
+            id="btnReporteDevoluciones"
+            onclick="cambiarTipoReporte('devoluciones')"
+        >
+
+            <div class="report-type-icon purple">
+                <i class="fa-solid fa-rotate-left"></i>
+            </div>
+
+            <div>
+                <span>Reporte</span>
+                <strong>Devoluciones</strong>
+            </div>
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         FILTROS
+    ========================== -->
+
+    <div class="reports-filter-panel">
+
+        <div class="reports-filter-header">
+
+            <div>
+
+                <span>
+                    FILTROS
+                </span>
+
+                <h3 id="tituloFiltroReporte">
+                    Reporte de Equipos
+                </h3>
+
+            </div>
+
+            <button
+                type="button"
+                class="btn-clear-filter"
+                onclick="limpiarFiltrosReporte()"
+            >
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+                Limpiar filtros
+            </button>
+
+        </div>
+
+
+        <div class="reports-filters-grid">
+
+            <div class="form-field">
+
+                <label>
+                    Buscar
+                </label>
+
+                <div class="input-equipment">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="buscarReporte"
+                        placeholder="Código, DNI, trabajador, serie..."
+                        oninput="aplicarFiltrosReporte()"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label>
+                    Fecha desde
+                </label>
+
+                <div class="input-equipment">
+
+                    <i class="fa-solid fa-calendar"></i>
+
+                    <input
+                        type="date"
+                        id="fechaDesdeReporte"
+                        onchange="aplicarFiltrosReporte()"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label>
+                    Fecha hasta
+                </label>
+
+                <div class="input-equipment">
+
+                    <i class="fa-solid fa-calendar-check"></i>
+
+                    <input
+                        type="date"
+                        id="fechaHastaReporte"
+                        onchange="aplicarFiltrosReporte()"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label>
+                    Estado
+                </label>
+
+                <div class="input-equipment">
+
+                    <i class="fa-solid fa-filter"></i>
+
+                    <select
+                        id="estadoReporte"
+                        onchange="aplicarFiltrosReporte()"
+                    >
+
+                        <option value="">
+                            Todos los estados
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         RESUMEN
+    ========================== -->
+
+    <div class="reports-summary">
+
+        <div class="report-summary-card">
+
+            <span>
+                Registros encontrados
+            </span>
+
+            <strong id="reporteTotalRegistros">
+                0
+            </strong>
+
+        </div>
+
+
+        <div class="report-summary-card">
+
+            <span>
+                Tipo de reporte
+            </span>
+
+            <strong id="reporteTipoActual">
+                Equipos
+            </strong>
+
+        </div>
+
+
+        <div class="report-summary-actions">
+
+            <button
+                type="button"
+                class="btn-export-excel"
+                onclick="exportarReporteExcel()"
+            >
+                <i class="fa-solid fa-file-excel"></i>
+                Exportar Excel
+            </button>
+
+
+            <button
+                type="button"
+                class="btn-save-equipment"
+                onclick="generarReportePDF()"
+            >
+                <i class="fa-solid fa-file-pdf"></i>
+                Generar PDF
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         TABLA
+    ========================== -->
+
+    <div class="table-container report-table-container">
+
+        <table
+            class="equipment-table"
+            id="tablaReporte"
+        >
+
+            <thead id="reporteTableHead">
+
+            </thead>
+
+
+            <tbody id="reporteTableBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+        <!-- =================================================
+             USUARIOS
+        ================================================== -->
+
+        <section
+            id="usuarios"
+            class="module">
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        ADMINISTRACIÓN
+                    </span>
+
+                    <h2>
+                        Usuarios registrados
+                    </h2>
+
+                    <p>
+                        Administración de usuarios del sistema. Acceso exclusivo del Propietario.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="btn-primary"
+                    onclick="mostrarRegistro()">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Crear usuario
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            CONTROL DE ACCESO
+                        </span>
+
+                        <h3>
+                            Usuarios del sistema
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    USUARIO
+                                </th>
+
+                                <th>
+                                    NOMBRE
+                                </th>
+
+                                <th>
+                                    ROL
+                                </th>
+
+                                <th>
+                                    ESTADO
+                                </th>
+
+                                <td>
+                                    FECHA
+                                </td>
+
+                                <th>
+                                    ACCIONES
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="usersTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CONFIGURACIÓN
+        ================================================== -->
+
+        <section
+            id="configuracion"
+            class="module">
+
+            <div class="module-header">
+
+                <div>
+
+                    <span class="panel-label">
+                        SISTEMA
+                    </span>
+
+                    <h2>
+                        Configuración
+                    </h2>
+
+                    <p>
+                        Administra catálogos, cargas masivas y datos base del sistema.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- ===============================
+         RESUMEN
+    ================================ -->
+
+    <div class="config-stats">
+
+        <div class="config-stat-card">
+
+            <div class="stat-icon blue">
+                <i class="fa-solid fa-users"></i>
+            </div>
+
+            <div>
+                <span>Trabajadores registrados</span>
+                <strong id="totalTrabajadoresConfig">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="config-stat-card">
+
+            <div class="stat-icon green">
+                <i class="fa-solid fa-laptop"></i>
+            </div>
+
+            <div>
+                <span>Equipos registrados</span>
+                <strong id="totalEquiposConfig">0</strong>
+            </div>
+
+        </div>
+
+
+        <div class="config-stat-card">
+
+            <div class="stat-icon orange">
+                <i class="fa-solid fa-file-excel"></i>
+            </div>
+
+            <div>
+                <span>Última carga</span>
+                <strong id="ultimaCargaConfig">Sin cargas</strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===============================
+         TARJETAS DE IMPORTACIÓN
+    ================================ -->
+
+    <div class="config-import-grid">
+
+
+        <!-- TRABAJADORES -->
+
+        <div class="config-import-card">
+
+            <div class="config-import-header">
+
+                <div class="config-import-icon blue">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>CATÁLOGO</span>
+
+                    <h3>
+                        Trabajadores
+                    </h3>
+
+                    <p>
+                        Importa DNI, nombres, cargo y área desde Excel
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="config-file-box">
+
+                <input
+                    type="file"
+                    id="archivoTrabajadoresExcel"
+                    accept=".xlsx,.xls"
+                    hidden
+                    onchange="procesarExcelTrabajadores(event)"
+                >
+
+
+                <button
+                    type="button"
+                    class="btn-config-upload"
+                    onclick="
+                        document
+                        .getElementById(
+                            'archivoTrabajadoresExcel'
+                        )
+                        .click()
+                    "
+                >
+
+                    <i class="fa-solid fa-file-arrow-up"></i>
+
+                    Seleccionar Excel
+
+                </button>
+
+
+                <small>
+                    Formatos admitidos: .xlsx / .xls
+                </small>
+
+            </div>
+
+
+            <div class="config-required-columns">
+
+                <strong>
+                    Columnas esperadas
+                </strong>
+
+                <span>DNI</span>
+                <span>APELLIDOS Y NOMBRES</span>
+                <span>CARGO</span>
+                <span>AREA</span>
+
+            </div>
+
+
+            <div class="config-card-actions">
+
+                <button
+                    type="button"
+                    class="btn-clear-database"
+                    onclick="eliminarTodosTrabajadores()"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+                    Limpiar trabajadores
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- EQUIPOS -->
+
+        <div class="config-import-card">
+
+            <div class="config-import-header">
+
+                <div class="config-import-icon green">
+
+                    <i class="fa-solid fa-laptop"></i>
+
+                </div>
+
+
+                <div>
+
+                    <span>CATÁLOGO</span>
+
+                    <h3>
+                        Equipos
+                    </h3>
+
+                    <p>
+                        Importa equipos tecnológicos desde Excel
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="config-file-box">
+
+                <input
+                    type="file"
+                    id="archivoEquiposExcel"
+                    accept=".xlsx,.xls"
+                    hidden
+                    onchange="procesarExcelEquipos(event)"
+                >
+
+
+                <button
+                    type="button"
+                    class="btn-config-upload"
+                    onclick="
+                        document
+                        .getElementById(
+                            'archivoEquiposExcel'
+                        )
+                        .click()
+                    "
+                >
+
+                    <i class="fa-solid fa-file-arrow-up"></i>
+
+                    Seleccionar Excel
+
+                </button>
+
+
+                <small>
+                    Formatos admitidos: .xlsx / .xls
+                </small>
+
+            </div>
+
+
+            <div class="config-required-columns">
+
+                <strong>
+                    Columnas esperadas
+                </strong>
+
+                <span>TIPO</span>
+                <span>MARCA</span>
+                <span>MODELO</span>
+                <span>SERIE</span>
+                <span>UBICACION</span>
+
+            </div>
+
+
+            <div class="config-card-actions">
+
+                <button
+                    type="button"
+                    class="btn-clear-database"
+                    onclick="eliminarTodosEquiposConfig()"
+                >
+
+                    <i class="fa-solid fa-trash"></i>
+                    Limpiar equipos
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===============================
+         PESTAÑAS DE CATÁLOGOS
+    ================================ -->
+
+    <div class="config-catalog-panel">
+
+        <div class="config-tabs">
+
+            <button
+                type="button"
+                id="tabTrabajadoresConfig"
+                class="config-tab active"
+                onclick="mostrarCatalogoConfig('trabajadores')"
+            >
+                <i class="fa-solid fa-users"></i>
+                Trabajadores
+            </button>
+
+
+            <button
+                type="button"
+                id="tabEquiposConfig"
+                class="config-tab"
+                onclick="mostrarCatalogoConfig('equipos')"
+            >
+                <i class="fa-solid fa-laptop"></i>
+                Equipos
+            </button>
+
+        </div>
+
+
+        <!-- TRABAJADORES -->
+
+        <div
+            id="catalogoTrabajadoresConfig"
+            class="config-catalog-content"
+        >
+
+            <div class="config-catalog-toolbar">
+
+                <div class="equipment-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="buscarTrabajadorConfig"
+                        placeholder="Buscar por DNI, nombre, cargo o área..."
+                        oninput="filtrarTrabajadoresConfig()"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="equipment-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>DNI</th>
+                            <th>Apellidos y nombres</th>
+                            <th>Cargo</th>
+                            <th>Área</th>
+                            <th>Fecha carga</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="trabajadoresConfigTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- EQUIPOS -->
+
+        <div
+            id="catalogoEquiposConfig"
+            class="config-catalog-content hidden"
+        >
+
+            <div class="config-catalog-toolbar">
+
+                <div class="equipment-search">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="buscarEquipoConfig"
+                        placeholder="Buscar por código, tipo, marca, modelo o serie..."
+                        oninput="filtrarEquiposConfig()"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table class="equipment-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Código</th>
+                            <th>Tipo</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>Serie</th>
+                            <th>Ubicación</th>
+                            <th>Estado</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="equiposConfigTableBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+    </main>
+
+</div>
+
+<!-- =================================================
+             REGISTRO DE EQUIPOS
+================================================== -->
+
+<div id="modalEquipo" class="modal-overlay hidden">
+
+    <div class="modal-equipment">
+
+        <div class="modal-header">
+
+            <div>
+                <span class="modal-label">CONTROL DE ACTIVOS</span>
+                <h2 id="tituloModalEquipo">
+                    Registrar equipo
+                </h2>
+            </div>
+
+            <button
+                class="modal-close"
+                onclick="cerrarFormularioEquipo()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="equipoForm">
+
+            <input type="hidden" id="equipoId">
+
+
+            <div class="form-grid-equipment">
+
+                <div class="form-field">
+                    <label>Código</label>
+
+                    <div class="input-equipment readonly">
+                        <i class="fa-solid fa-barcode"></i>
+
+                        <input
+                            type="text"
+                            id="codigoEquipo"
+                            readonly
+                        >
+                    </div>
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>Tipo de equipo *</label>
+
+                    <div class="input-equipment">
+                        <i class="fa-solid fa-laptop"></i>
+
+                        <select id="tipoEquipo" required>
+
+                            <option value="">Seleccionar</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Desktop">Desktop</option>
+                            <option value="Monitor">Monitor</option>
+                            <option value="Tablet">Tablet</option>
+                            <option value="Celular">Celular</option>
+                            <option value="Impresora">Impresora</option>
+                            <option value="Scanner">Scanner</option>
+                            <option value="Proyector">Proyector</option>
+                            <option value="Otro">Otro</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>Marca *</label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-tag"></i>
+
+                        <input
+                            type="text"
+                            id="marcaEquipo"
+                            placeholder="Ej. Lenovo"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>Modelo</label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-microchip"></i>
+
+                        <input
+                            type="text"
+                            id="modeloEquipo"
+                            placeholder="Ej. ThinkPad E14"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>Número de serie *</label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-hashtag"></i>
+
+                        <input
+                            type="text"
+                            id="serieEquipo"
+                            placeholder="Número de serie"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>Ubicación</label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-location-dot"></i>
+
+                        <input
+                            type="text"
+                            id="ubicacionEquipo"
+                            placeholder="Ej. Almacén principal"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>Estado *</label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <select id="estadoEquipo" required>
+
+                            <option value="Disponible">
+                                Disponible
+                            </option>
+
+                            <option value="Entregado">
+                                Entregado
+                            </option>
+
+                            <option value="Mantenimiento">
+                                Mantenimiento
+                            </option>
+
+                            <option value="Baja">
+                                Baja
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>Fecha de registro</label>
+
+                    <div class="input-equipment readonly">
+
+                        <i class="fa-solid fa-calendar"></i>
+
+                        <input
+                            type="text"
+                            id="fechaEquipo"
+                            readonly
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="cerrarFormularioEquipo()"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-save-equipment"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar equipo
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MODAL ENTREGA DE EQUIPO
+=========================================== -->
+
+<div id="modalEntrega" class="modal-overlay hidden">
+
+    <div class="modal-equipment modal-delivery">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    CONTROL DE ASIGNACIONES
+                </span>
+
+                <h2>
+                    Nueva entrega
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="cerrarFormularioEntrega()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="entregaForm">
+
+            <div class="delivery-number-box">
+
+                <div>
+
+                    <span>N° DE ENTREGA</span>
+
+                    <strong id="numeroEntregaVista">
+                        NE000001
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>FECHA</span>
+
+                    <strong id="fechaEntregaVista">
+                        --/--/----
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid-equipment">
+
+
+<!-- DNI -->
+
+<div class="form-field">
+
+    <label>
+        DNI
+    </label>
+
+    <div class="dni-scan-row">
+
+        <div class="input-equipment dni-input-box">
+
+            <i class="fa-solid fa-id-card"></i>
+
+            <input
+                type="text"
+                id="dniEntrega"
+                maxlength="8"
+                inputmode="numeric"
+                placeholder="Ingrese DNI"
+                oninput="buscarTrabajadorEntregaPorDNI()"
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn-scan-dni"
+            onclick="abrirScannerDNI()"
+            title="Escanear código de barras o QR"
+        >
+
+            <i class="fa-solid fa-qrcode"></i>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+                <!-- NOMBRE -->
+
+                <div class="form-field">
+
+                    <label>Apellidos y nombres *</label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <input
+                            type="text"
+                            id="trabajadorEntrega"
+                            placeholder="Nombre completo"
+                            readonly
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- CARGO -->
+
+                <div class="form-field">
+
+                    <label>Cargo</label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-briefcase"></i>
+
+                        <input
+                            type="text"
+                            id="cargoEntrega"
+                            placeholder="Cargo del trabajador"
+                            readonly
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- AREA -->
+
+                <div class="form-field">
+
+                    <label>Área / Proyecto</label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-building"></i>
+
+                        <input
+                            type="text"
+                            id="areaEntrega"
+                            placeholder="Ej. Almacén"
+                            readonly
+                        >
+
+                    </div>
+
+                </div>
+
+<!-- ==========================================
+     SELECCIÓN MULTIPLE DE EQUIPOS
+=========================================== -->
+
+<div class="form-field">
+
+    <label>
+        Buscar equipo por serie
+    </label>
+
+    <div class="delivery-search-row">
+
+        <div class="input-equipment">
+
+            <i class="fa-solid fa-barcode"></i>
+
+            <input
+                type="text"
+                id="buscarSerieEntrega"
+                placeholder="Ingrese o escanee número de serie..."
+                autocomplete="off"
+                onkeydown="buscarSerieEntregaEnter(event)"
+            >
+
+        </div>
+
+        <button
+            type="button"
+            class="btn-scan-serie"
+            onclick="abrirScannerSerieEntrega()"
+            title="Escanear QR de la serie"
+        >
+            <i class="fa-solid fa-qrcode"></i>
+        </button>
+
+    </div>
+
+</div>
+
+        <button
+            type="button"
+            class="btn-add-delivery-equipment"
+            onclick="agregarEquipoEntregaPorSerie()"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            Agregar
+
+        </button>
+
+
+</div>
+
+<!-- EQUIPOS AGREGADOS -->
+
+<div class="form-field full-width">
+
+    <div class="delivery-equipment-list-header">
+
+        <div>
+            <span>EQUIPOS DE LA ENTREGA</span>
+
+            <h4>
+                Equipos seleccionados
+            </h4>
+        </div>
+
+
+        <div class="delivery-equipment-counter">
+
+            <span id="cantidadEquiposEntrega">
+                0
+            </span>
+
+            equipo(s)
+
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="equipment-table delivery-items-table">
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Código</th>
+                    <th>Equipo</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Serie</th>
+                    <th>Acción</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody id="equiposEntregaTableBody">
+
+                <tr>
+
+                    <td
+                        colspan="7"
+                        class="empty-delivery-items"
+                    >
+                        No has agregado equipos.
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+            <!-- DATOS DEL EQUIPO -->
+
+            <div
+                id="previewEquipoEntrega"
+                class="delivery-equipment-preview hidden"
+            >
+
+                <div class="delivery-preview-icon">
+
+                    <i class="fa-solid fa-laptop"></i>
+
+                </div>
+
+
+                <div class="delivery-preview-data">
+
+                    <div>
+                        <span>Código</span>
+                        <strong id="previewCodigo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Equipo</span>
+                        <strong id="previewTipo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Marca</span>
+                        <strong id="previewMarca">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Modelo</span>
+                        <strong id="previewModelo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>N° Serie</span>
+                        <strong id="previewSerie">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Estado</span>
+                        <strong class="preview-available">
+                            Disponible
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OBSERVACIONES -->
+
+            <div class="form-field delivery-observation">
+
+                <label>Observaciones</label>
+
+                <textarea
+                    id="observacionEntrega"
+                    placeholder="Escribe alguna observación sobre la entrega..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- USUARIO -->
+
+            <div class="delivery-attended">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+                <div>
+                    <span>Entrega atendida por</span>
+                    <strong id="usuarioEntregaActual">
+                        -
+                    </strong>
+                </div>
+
+            </div>
+
+
+            <!-- BOTONES -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="cerrarFormularioEntrega()"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-save-equipment"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Registrar entrega
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MODAL FIRMA DIGITAL
+=========================================== -->
+
+<div id="modalFirmaEntrega" class="modal-overlay hidden">
+
+    <div class="signature-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    FIRMA DIGITAL
+                </span>
+
+                <h2>
+                    Firma del responsable
+                </h2>
+
+                <p class="signature-subtitle">
+                    Entrega:
+                    <strong id="numeroEntregaFirma">-</strong>
+                </p>
+
+            </div>
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="cerrarFirmaEntrega()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="signature-body">
+
+            <!-- DATOS DEL RESPONSABLE -->
+
+            <div class="signature-person">
+
+                <div class="signature-person-icon">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div>
+
+                    <span>RESPONSABLE DE RECEPCIÓN</span>
+
+                    <strong id="nombreResponsableFirma">
+                        -
+                    </strong>
+
+                    <small id="dniResponsableFirma">
+                        DNI: -
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- CUADRO DE FIRMA -->
+
+            <div class="signature-area">
+
+                <div class="signature-label">
+
+                    <div>
+                        <i class="fa-solid fa-pen-nib"></i>
+                        Firma
+                    </div>
+
+                    <span>
+                        Usa mouse, pantalla táctil o lápiz
+                    </span>
+
+                </div>
+
+
+                <div class="signature-canvas-wrapper">
+
+                    <canvas
+                        id="canvasFirmaEntrega"
+                    ></canvas>
+
+                    <div
+                        id="signaturePlaceholder"
+                        class="signature-placeholder"
+                    >
+
+                        <i class="fa-solid fa-signature"></i>
+
+                        <span>
+                            Firma dentro de este recuadro
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTONES -->
+
+            <div class="signature-actions">
+
+                <button
+                    type="button"
+                    class="btn-clear-signature"
+                    onclick="limpiarFirmaEntrega()"
+                >
+                    <i class="fa-solid fa-eraser"></i>
+                    Limpiar firma
+                </button>
+
+
+                <div class="signature-actions-right">
+
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        onclick="cerrarFirmaEntrega()"
+                    >
+                        Cancelar
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn-save-equipment"
+                        onclick="guardarFirmaEntrega()"
+                    >
+                        <i class="fa-solid fa-check"></i>
+                        Guardar firma
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     ETAPA 6 - VALE DE ENTREGA
+=========================================== -->
+
+<div id="modalValeEntrega" class="modal-overlay hidden">
+
+    <div class="vale-modal">
+
+        <!-- CABECERA DEL MODAL -->
+
+        <div class="vale-modal-header">
+
+            <div>
+                <span>DOCUMENTO DE ENTREGA</span>
+                <h2>Vale de Entrega de Equipo</h2>
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="cerrarValeEntrega()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <!-- DOCUMENTO -->
+
+        <div id="valeEntregaDocumento" class="vale-document">
+
+            <!-- ENCABEZADO -->
+
+            <div class="vale-header">
+
+                <div class="vale-company">
+
+                    <div class="brand-icon brand-logo">
+                        <img
+                            src="tecsys.png"
+                            alt="Logo"
+                            class="sidebar-logo-img"
+                        >
+                    </div>
+
+                    <div>
+                        <h1>CONTROL DE EQUIPOS</h1>
+                        <p>Sistema de Gestión Tecnológica</p>
+                    </div>
+
+                </div>
+
+
+                <div class="vale-number">
+
+                    <span>VALE N°</span>
+
+                    <strong id="valeNumero">
+                        NE000001
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- TITULO -->
+
+            <div class="vale-title">
+
+                <h2>
+                    VALE DE ENTREGA DE EQUIPO
+                </h2>
+
+                <p>
+                    Constancia de asignación y recepción
+                </p>
+
+            </div>
+
+
+            <!-- DATOS GENERALES -->
+
+            <div class="vale-section">
+
+                <div class="vale-section-title">
+                    DATOS DE ENTREGA
+                </div>
+
+
+                <div class="vale-data-grid">
+
+                    <div>
+                        <span>Fecha</span>
+                        <strong id="valeFecha">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Estado</span>
+                        <strong id="valeEstado">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Atendido por</span>
+                        <strong id="valeAtendido">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TRABAJADOR -->
+
+            <div class="vale-section">
+
+                <div class="vale-section-title">
+                    DATOS DEL TRABAJADOR
+                </div>
+
+
+                <div class="vale-data-grid two-columns">
+
+                    <div>
+                        <span>DNI</span>
+                        <strong id="valeDni">-</strong>
+                    </div>
+
+
+                    <div>
+                        <span>Apellidos y nombres</span>
+                        <strong id="valeTrabajador">-</strong>
+                    </div>
+
+
+                    <div>
+                        <span>Cargo</span>
+                        <strong id="valeCargo">-</strong>
+                    </div>
+
+
+                    <div>
+                        <span>Área / Proyecto</span>
+                        <strong id="valeArea">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EQUIPO -->
+
+            <div class="vale-section">
+
+                <div class="vale-section-title">
+                    DATOS DEL EQUIPO
+                </div>
+
+
+                <table class="vale-equipment-table">
+
+                    <thead>
+
+                        <tr>
+                            <th>Items</th>
+                            <th>Código</th>
+                            <th>Equipo</th>
+                            <th>Marca</th>
+                            <th>Modelo</th>
+                            <th>N° Serie</th>
+                            <th>Fecha Dev.</th>
+                            <th>Atendido Por</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="valeEquiposTableBody">
+
+                        <tr>
+
+                            <td id="valeCodigoEquipo">-</td>
+
+                            <td id="valeTipoEquipo">-</td>
+
+                            <td id="valeMarca">-</td>
+
+                            <td id="valeModelo">-</td>
+
+                            <td id="valeSerie">-</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- OBSERVACIONES -->
+
+            <div class="vale-section">
+
+                <div class="vale-section-title">
+                    OBSERVACIONES
+                </div>
+
+                <div
+                    id="valeObservacion"
+                    class="vale-observation"
+                >
+                    Sin observaciones
+                </div>
+
+            </div>
+
+
+            <!-- FIRMA -->
+
+            <div class="vale-signature-section">
+
+                <div class="vale-signature-box">
+
+                    <div class="vale-signature-image">
+
+                        <img
+                            id="valeFirmaImagen"
+                            alt="Firma digital"
+                        >
+
+                        <div
+                            id="valeFirmaPendiente"
+                            class="vale-no-signature"
+                        >
+                            FIRMA PENDIENTE
+                        </div>
+
+                    </div>
+
+
+                    <div class="vale-signature-line"></div>
+
+
+                    <strong id="valeFirmaNombre">
+                        -
+                    </strong>
+
+                    <span id="valeFirmaDni">
+                        DNI: -
+                    </span>
+
+                    <small>
+                        FIRMA DEL RESPONSABLE
+                    </small>
+
+                </div>
+
+
+                <div class="vale-attendant-box">
+
+                    <div class="vale-attendant-icon">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
+
+                    <strong id="valeAtendidoFirma">
+                        -
+                    </strong>
+
+                    <span>
+                        RESPONSABLE DE ENTREGA
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- PIE -->
+
+            <div class="vale-footer">
+
+                <div>
+                    Documento generado por el Sistema de Control de Equipos
+                </div>
+
+                <div id="valeFechaGeneracion">
+                    -
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- BOTONES -->
+
+        <div class="vale-actions">
+
+            <button
+                type="button"
+                class="btn-cancel"
+                onclick="cerrarValeEntrega()"
+            >
+                Cerrar
+            </button>
+
+
+            <button
+                type="button"
+                class="btn-print-vale"
+                onclick="imprimirValeEntrega()"
+            >
+                <i class="fa-solid fa-print"></i>
+                Imprimir
+            </button>
+
+
+            <button
+                type="button"
+                class="btn-save-equipment"
+                onclick="generarPDFValeEntrega()"
+            >
+                <i class="fa-solid fa-file-pdf"></i>
+                Generar PDF
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     ETAPA 7 - MODAL DEVOLUCIÓN
+=========================================== -->
+
+<div id="modalDevolucion" class="modal-overlay hidden">
+
+    <div class="modal-equipment modal-return">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    CONTROL DE DEVOLUCIONES
+                </span>
+
+                <h2>
+                    Nueva devolución
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="cerrarFormularioDevolucion()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <form id="devolucionForm">
+
+            <!-- CABECERA -->
+
+            <div class="delivery-number-box">
+
+                <div>
+
+                    <span>N° DEVOLUCIÓN</span>
+
+                    <strong id="numeroDevolucionVista">
+                        ND000001
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>FECHA</span>
+
+                    <strong id="fechaDevolucionVista">
+                        --/--/----
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ENTREGA -->
+
+<!-- ==========================================
+     DEVOLUCIÓN POR RESPONSABLE / SERIE
+=========================================== -->
+
+<div class="form-field">
+
+    <label>
+        DNI del responsable
+    </label>
+
+    <div class="input-equipment">
+
+        <i class="fa-solid fa-id-card"></i>
+
+        <input
+            type="text"
+            id="dniDevolucion"
+            maxlength="8"
+            inputmode="numeric"
+            placeholder="Ingrese DNI"
+            oninput="buscarResponsableDevolucion()"
+        >
+
+    </div>
+
+</div>
+
+
+<div class="form-field">
+
+    <label>
+        Trabajador
+    </label>
+
+    <div class="input-equipment">
+
+        <i class="fa-solid fa-user"></i>
+
+        <input
+            type="text"
+            id="trabajadorDevolucion"
+            readonly
+        >
+
+    </div>
+
+</div>
+
+
+<div class="form-field full-width">
+
+    <label>
+        Buscar por serie
+    </label>
+
+    <div class="serie-search-wrapper">
+
+        <div class="input-equipment serie-search-input">
+
+            <i class="fa-solid fa-barcode"></i>
+
+            <input
+                type="text"
+                id="buscarSerieDevolucion"
+                placeholder="Ingrese o escanee serie..."
+                autocomplete="off"
+                onkeydown="buscarSerieDevolucionEnter(event)"
+            >
+
+        </div>
+
+
+        <button
+            type="button"
+            class="btn-serie-agregar"
+            onclick="agregarEquipoDevolucionPorSerie()"
+        >
+
+            <i class="fa-solid fa-plus"></i>
+
+            Agregar
+
+        </button>
+
+    </div>
+
+</div>
+
+<div class="form-field full-width">
+
+    <div class="delivery-equipment-list-header">
+
+        <div>
+
+            <span>
+                EQUIPOS A CARGO
+            </span>
+
+            <h4>
+                Equipos asignados al trabajador
+            </h4>
+
+        </div>
+
+
+        <div class="delivery-equipment-counter">
+
+            <span id="cantidadEquiposCargoDevolucion">
+                0
+            </span>
+
+            equipo(s)
+
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="equipment-table">
+
+            <thead>
+
+                <tr>
+                    <th></th>
+                    <th>Código</th>
+                    <th>Equipo</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Serie</th>
+                    <th>N° Entrega</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody id="equiposCargoDevolucionBody">
+
+                <tr>
+
+                    <td
+                        colspan="7"
+                        style="
+                            text-align:center;
+                            padding:30px;
+                            color:#64748b;
+                        "
+                    >
+                        Ingrese el DNI del trabajador.
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="form-field full-width">
+
+    <div class="delivery-equipment-list-header">
+
+        <div>
+
+            <span>
+                DEVOLUCIÓN ACTUAL
+            </span>
+
+            <h4>
+                Equipos seleccionados
+            </h4>
+
+        </div>
+
+
+        <div class="delivery-equipment-counter">
+
+            <span id="cantidadEquiposDevolucion">
+                0
+            </span>
+
+            equipo(s)
+
+        </div>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table class="equipment-table">
+
+            <thead>
+
+                <tr>
+                    <th>#</th>
+                    <th>Código</th>
+                    <th>Equipo</th>
+                    <th>Serie</th>
+                    <th>Estado recibido</th>
+                    <th>Nuevo estado</th>
+                    <th>Acción</th>
+                </tr>
+
+            </thead>
+
+
+            <tbody id="equiposSeleccionadosDevolucionBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+            <!-- DATOS TRABAJADOR -->
+
+            <div
+                id="previewDevolucion"
+                class="return-preview hidden"
+            >
+
+                <div class="return-preview-title">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Datos de la entrega
+
+                </div>
+
+
+                <div class="return-preview-grid">
+
+                    <div>
+                        <span>N° Entrega</span>
+                        <strong id="returnEntregaNumero">-</strong>
+                    </div>
+
+                    <div>
+                        <span>DNI</span>
+                        <strong id="returnDni">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Trabajador</span>
+                        <strong id="returnTrabajador">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Equipo</span>
+                        <strong id="returnEquipo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Marca / Modelo</span>
+                        <strong id="returnMarcaModelo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>N° Serie</span>
+                        <strong id="returnSerie">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ESTADO -->
+
+            <div class="form-grid-equipment return-condition-grid">
+
+                <div class="form-field">
+
+                    <label>
+                        Estado del equipo al recibir *
+                    </label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+                        <select
+                            id="estadoRecibidoDevolucion"
+                            required
+                        >
+
+                            <option value="Bueno">
+                                Bueno
+                            </option>
+
+                            <option value="Regular">
+                                Regular
+                            </option>
+
+                            <option value="Dañado">
+                                Dañado
+                            </option>
+
+                            <option value="Mantenimiento">
+                                Requiere mantenimiento
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-field">
+
+                    <label>
+                        Nuevo estado del equipo *
+                    </label>
+
+                    <div class="input-equipment">
+
+                        <i class="fa-solid fa-laptop"></i>
+
+                        <select
+                            id="nuevoEstadoEquipoDevolucion"
+                            required
+                        >
+
+                            <option value="Disponible">
+                                Disponible
+                            </option>
+
+                            <option value="Mantenimiento">
+                                Mantenimiento
+                            </option>
+
+                            <option value="Baja">
+                                Baja
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- OBSERVACIONES -->
+
+            <div class="form-field delivery-observation">
+
+                <label>
+                    Observaciones de devolución
+                </label>
+
+                <textarea
+                    id="observacionDevolucion"
+                    placeholder="Estado físico, accesorios faltantes, daños, observaciones..."
+                ></textarea>
+
+            </div>
+
+
+            <!-- USUARIO -->
+
+            <div class="delivery-attended">
+
+                <i class="fa-solid fa-user-shield"></i>
+
+                <div>
+
+                    <span>
+                        Devolución recibida por
+                    </span>
+
+                    <strong id="usuarioDevolucionActual">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTONES -->
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="cerrarFormularioDevolucion()"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-save-equipment"
+                >
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    Registrar devolución
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     ETAPA 8 - HISTORIAL DEL EQUIPO
+=========================================== -->
+
+<div id="modalHistorialEquipo" class="modal-overlay hidden">
+
+    <div class="history-modal">
+
+        <div class="modal-header">
+
+            <div>
+
+                <span class="modal-label">
+                    TRAZABILIDAD DEL ACTIVO
+                </span>
+
+                <h2>
+                    Historial del Equipo
+                </h2>
+
+                <p class="history-subtitle">
+
+                    Código:
+
+                    <strong id="historialCodigoEquipo">
+                        -
+                    </strong>
+
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="cerrarHistorialEquipo()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="history-body">
+
+            <!-- INFORMACION EQUIPO -->
+
+            <div class="history-equipment-card">
+
+                <div class="history-equipment-icon">
+
+                    <i class="fa-solid fa-laptop"></i>
+
+                </div>
+
+
+                <div class="history-equipment-data">
+
+                    <div>
+                        <span>Equipo</span>
+                        <strong id="historialTipoEquipo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Marca</span>
+                        <strong id="historialMarcaEquipo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Modelo</span>
+                        <strong id="historialModeloEquipo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>N° Serie</span>
+                        <strong id="historialSerieEquipo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Estado actual</span>
+                        <strong id="historialEstadoEquipo">-</strong>
+                    </div>
+
+                    <div>
+                        <span>Responsable actual</span>
+                        <strong id="historialResponsableEquipo">-</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LINEA DE TIEMPO -->
+
+            <div class="history-section-title">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+                Movimientos del equipo
+
+            </div>
+
+
+            <div
+                id="historialTimeline"
+                class="history-timeline"
+            >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MODAL MI PERFIL
+=========================================== -->
+
+<div
+    id="modalMiPerfil"
+    class="modal-overlay hidden"
+>
+
+    <div class="my-profile-modal">
+
+        <div class="my-profile-header">
+
+            <div>
+
+                <span class="my-profile-label">
+                    CUENTA DE USUARIO
+                </span>
+
+                <h2>
+                    Mi Perfil
+                </h2>
+
+                <p>
+                    Consulta y actualiza tu información personal
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="cerrarMiPerfil()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="my-profile-body">
+
+            <!-- AVATAR -->
+
+            <div class="my-profile-summary">
+
+                <div
+                    id="miPerfilAvatar"
+                    class="my-profile-avatar"
+                >
+                    US
+                </div>
+
+
+                <div class="my-profile-summary-info">
+
+                    <h3 id="miPerfilNombreVista">
+                        Usuario
+                    </h3>
+
+                    <span id="miPerfilRolVista">
+                        Usuario
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- DATOS DE CUENTA -->
+
+            <div class="my-profile-section">
+
+                <div class="my-profile-section-title">
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Información de la cuenta
+
+                </div>
+
+
+                <div class="my-profile-grid">
+
+                    <div class="form-field">
+
+                        <label>
+                            Nombre completo
+                        </label>
+
+                        <div class="input-equipment">
+
+                            <i class="fa-solid fa-id-card"></i>
+
+                            <input
+                                type="text"
+                                id="miPerfilNombre"
+                                placeholder="Nombre completo"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label>
+                            Usuario
+                        </label>
+
+                        <div class="input-equipment">
+
+                            <i class="fa-solid fa-user-tag"></i>
+
+                            <input
+                                type="text"
+                                id="miPerfilUsuario"
+                                placeholder="Usuario"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label>
+                            Rol
+                        </label>
+
+                        <div class="input-equipment">
+
+                            <i class="fa-solid fa-shield-halved"></i>
+
+                            <input
+                                type="text"
+                                id="miPerfilRol"
+                                readonly
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label>
+                            Estado
+                        </label>
+
+                        <div class="input-equipment">
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            <input
+                                type="text"
+                                id="miPerfilEstado"
+                                readonly
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field full-width">
+
+                        <label>
+                            Fecha de registro
+                        </label>
+
+                        <div class="input-equipment">
+
+                            <i class="fa-solid fa-calendar-days"></i>
+
+                            <input
+                                type="text"
+                                id="miPerfilFechaRegistro"
+                                readonly
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTRASEÑA -->
+
+            <div class="my-profile-section">
+
+                <div class="my-profile-section-title">
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Cambiar contraseña
+
+                </div>
+
+
+                <p class="my-profile-help">
+                    Déjalo vacío si no deseas cambiar tu contraseña.
+                </p>
+
+
+                <div class="my-profile-grid">
+
+                    <div class="form-field">
+
+                        <label>
+                            Nueva contraseña
+                        </label>
+
+                        <div class="input-equipment password-profile-field">
+
+                            <i class="fa-solid fa-key"></i>
+
+                            <input
+                                type="password"
+                                id="miPerfilPassword"
+                                placeholder="Nueva contraseña"
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="
+                                    mostrarOcultarPasswordPerfil(
+                                        'miPerfilPassword',
+                                        this
+                                    )
+                                "
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-field">
+
+                        <label>
+                            Confirmar contraseña
+                        </label>
+
+                        <div class="input-equipment password-profile-field">
+
+                            <i class="fa-solid fa-key"></i>
+
+                            <input
+                                type="password"
+                                id="miPerfilPasswordConfirm"
+                                placeholder="Confirmar contraseña"
+                            >
+
+                            <button
+                                type="button"
+                                class="password-toggle"
+                                onclick="
+                                    mostrarOcultarPasswordPerfil(
+                                        'miPerfilPasswordConfirm',
+                                        this
+                                    )
+                                "
+                            >
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="miPerfilMensaje"
+                class="my-profile-message hidden"
+            >
+            </div>
+
+
+            <!-- BOTONES -->
+
+            <div class="my-profile-actions">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="cerrarMiPerfil()"
+                >
+                    Cancelar
+                </button>
+
+
+                <button
+                    type="button"
+                    class="btn-save-equipment"
+                    onclick="guardarCambiosMiPerfil()"
+                >
+
+                    <i class="fa-solid fa-floppy-disk"></i>
+
+                    Guardar cambios
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MODAL ESCANEAR DNI
+=========================================== -->
+
+<div
+    id="modalScannerDNI"
+    class="modal-overlay hidden"
+>
+
+    <div class="scanner-modal">
+
+        <div class="scanner-header">
+
+            <div>
+
+                <span>
+                    LECTOR
+                </span>
+
+                <h2>
+                    Escanear DNI
+                </h2>
+
+                <p>
+                    Lee un código QR o código de barras
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="cerrarScannerDNI()"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <div class="scanner-body">
+
+            <div
+                id="scannerDNI"
+                class="scanner-reader"
+            >
+            </div>
+
+
+            <div class="scanner-message">
+
+                <i class="fa-solid fa-camera"></i>
+
+                <span>
+                    Apunta la cámara hacia el código
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MODAL QR
+=========================================== -->
+
+<div
+    id="modalQR"
+    class="modal-qr"
+    style="display:none;"
+>
+
+    <div class="modal-qr-contenido">
+
+        <button
+            class="cerrar-qr"
+            onclick="cerrarModalQR()"
+        >
+            ×
+        </button>
+
+        <h2>QR DEL EQUIPO</h2>
+
+        <div id="qrIndividual"></div>
+
+        <p id="textoSerieQR"></p>
+
+        <button
+            class="btn-descargar-qr"
+            onclick="descargarQRIndividual()"
+        >
+            Descargar QR
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MODAL SCANER SERIE
+=========================================== -->
+
+<div
+    id="modalScannerSerieEntrega"
+    class="modal-overlay hidden"
+>
+
+    <div class="scanner-modal">
+
+        <div class="scanner-header">
+
+            <div>
+
+                <span>
+                    LECTOR QR
+                </span>
+
+                <h2>
+                    Escanear serie
+                </h2>
+
+                <p>
+                    Apunta la cámara al QR del equipo
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="modal-close"
+                onclick="cerrarScannerSerieEntrega()"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+
+        <div class="scanner-body">
+
+            <div
+                id="scannerSerieEntrega"
+                class="scanner-reader"
+            >
+            </div>
+
+
+            <div class="scanner-message">
+
+                <i class="fa-solid fa-qrcode"></i>
+
+                <span>
+                    El contenido del QR debe contener la serie del equipo
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     NOTIFICACIONES DEL SISTEMA
+========================================== -->
+
+<div
+    id="toastContainer"
+    class="toast-container"
+></div>
+
+<!-- ==========================================
+     MODAL CAMBIAR USUARIO
+========================================== -->
+
+<div
+    id="modalCambiarRolUsuario"
+    class="modal-overlay hidden"
+>
+
+    <div class="reset-modal">
+
+        <div class="reset-modal-icon">
+
+            <i class="fa-solid fa-user-shield"></i>
+
+        </div>
+
+
+        <h2>
+            Cambiar rol
+        </h2>
+
+
+        <p id="cambioRolNombre">
+            Usuario
+        </p>
+
+
+        <div class="form-field">
+
+            <label>
+                Rol del usuario
+            </label>
+
+            <select id="nuevoRolUsuario">
+
+                <option value="Usuario">
+                    Usuario
+                </option>
+
+                <option value="Almacenero">
+                    Almacenero
+                </option>
+
+                <option value="Jefe de Almacén">
+                    Jefe de Almacén
+                </option>
+
+                <option value="Administrador">
+                    Administrador
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="reset-modal-actions">
+
+            <button
+                type="button"
+                class="btn-cancel"
+                onclick="cerrarCambioRolUsuario()"
+            >
+                Cancelar
+            </button>
+
+
+            <button
+                type="button"
+                class="btn-save-equipment"
+                onclick="guardarCambioRolUsuario()"
+            >
+
+                <i class="fa-solid fa-floppy-disk"></i>
+
+                Guardar
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JAVASCRIPT -->
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+
+<script src="app.js"></script>
+<script src="recup.js"></script>
+<script src="equipos.js"></script>
+<script src="entrega.js"></script>
+<script src="firma.js"></script>
+<script src="vale.js"></script>
+<script src="dev.js"></script>
+<script src="inventario.js"></script>
+<script src="dashboar.js"></script>
+<script src="reporte.js"></script>
+<script src="config.js"></script>
+<script src="noti.js"></script>
+<script src="avatar.js"></script>
+<script src="perfil.js"></script>
+<script src="scan.js"></script>
+<script src="qr.js"></script>
+
+
+</body>
+</html>
