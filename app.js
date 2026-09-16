@@ -2870,13 +2870,3 @@ function guardarCambioRolUsuario() {
     );
 
 }
-
-localStorage.removeItem("controlEquiposLista");
-
-localStorage.removeItem("controlEquiposEntregas");
-
-localStorage.removeItem("controlEquiposDevoluciones");
-
-localStorage.removeItem("controlEquiposTrabajadores");
-
-localStorage.removeItem("controlEquiposUltimaCarga");
